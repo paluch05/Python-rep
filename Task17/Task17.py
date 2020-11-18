@@ -1,22 +1,17 @@
-def longest_sentence():
+def longest_sentence_and_most_common_word():
     stream = open('artykul.txt', 'r', encoding='utf-8')
     try:
         content = stream.read()
+        n = content.split(".")
+        length_of_sentence = [len(i) for i in n]
+        from collections import Counter
+        count = Counter(content.lower().strip().split())
     finally:
         stream.close()
-    n = content.split(".")
-    length_of_sentence = [len(i) for i in n]
-    print('The longest sentence in this article is: ', n[length_of_sentence.index(max(length_of_sentence))])
-
-
-def most_common():
-    from collections import Counter
-    with open('artykul.txt', 'r', encoding='utf-8') as input_file:
-        count = Counter(word for line in input_file
-                        for word in line.split())
-    print('Most common words are:', count.most_common(10))
+    return count, length_of_sentence, n
 
 
 if __name__ == '__main__':
-    longest_sentence()
-    most_common()
+    count, length_of_sentence, n = longest_sentence_and_most_common_word()
+    print('The longest sentence in this article is: ', n[length_of_sentence.index(max(length_of_sentence))])
+    print('Most common words are:', count.most_common(10))
