@@ -1,1 +1,1 @@
-pip install wikipedia v. 1.26.2
+wikipedia v. 1.26.2
